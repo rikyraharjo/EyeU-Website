@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from functools import wraps
 import re
+import mysql.connector
 
 from keras.models import load_model
 from PIL import Image
