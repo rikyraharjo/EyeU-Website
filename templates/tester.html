@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{url_for('static',filename='src/logo/logo.svg')}}" type="image/vsvg" sizes="16x16">
+    <title>EyeU - Cek Kesehatan Mata dengan lebih cepat & pintar</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Deteksi Kamera | EyeU</title>
+</head>
+
+<body>
+    <div class="max-w-md mx-auto bg-white p-8 rounded-md shadow-md">
+        <h1 class="mb-6 text-2xl font-semibold text-center">Prediksi Kesehatan Mata</h1>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Pilih Metode:</label>
+            <div class="mt-2">
+                <input type="radio" id="camera" name="metode" class="mr-2" value="camera">
+                <label for="camera" class="mr-6">Gunakan Kamera</label>
+
+                <input type="radio" id="upload" name="metode" class="mr-2" value="upload">
+                <label for="upload">Unggah File</label>
+            </div>
+        </div>
+
+        <div id="cameraSection" class="hidden mb-4">
+            <video id="video " autoplay></video>
+            <p class="text-sm text-gray-500">Pastikan browser Anda mendukung akses kamera.</p>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">Aktifkan Kamera</button>
+        </div>
+
+        <div id="uploadSection" class="hidden">
+            <!-- Konten untuk mengunggah file akan ditambahkan di sini -->
+            <input type="file" accept=".jpg, .jpeg, .png" class="mt-2">
+            <p class="text-sm text-gray-500">Unggah file gambar mata Anda.</p>
+        </div>
+
+        <button class="bg-green-500 text-white px-4 py-2 rounded-md mt-4">Mulai Prediksi</button>
+    </div>
+
+    <script>
+        const cameraSection = document.getElementById('cameraSection');
+        const uploadSection = document.getElementById('uploadSection');
+        const cameraRadio = document.getElementById('camera');
+        const uploadRadio = document.getElementById('upload');
+
+        cameraRadio.addEventListener('click', function() {
+            cameraSection.classList.remove('hidden');
+            uploadSection.classList.add('hidden');
+        });
+
+        uploadRadio.addEventListener('click', function() {
+            cameraSection.classList.add('hidden');
+            uploadSection.classList.remove('hidden');
+        });
+
+
+        let camera = document.getElementById("video ");
+
+        navigator.mediaDevices.getUserMedia({
+                video: true
+            })
+            .then(stream => {
+                camera.srcObject = stream;
+            })
+            .catch(error => {
+                console.log('Error accessing camera: ${error}')
+            });
+    </script>
+
+
+
+
+</body>
+
+</html>

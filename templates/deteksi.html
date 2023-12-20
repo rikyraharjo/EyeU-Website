@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{url_for('static',filename='src/logo/logo.svg')}}" type="image/vsvg" sizes="16x16">
+    <title>Deteksi | EyeU</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Deteksi Kamera | EyeU</title>
+</head>
+
+<body>
+    <div class="flex flex-col justify-center px-6 py-16 lg:px-8">
+        <div class="sm:mx-auto mb-9 sm:w-full sm:max-w-sm">
+            <a href="{{url_for('home')}}">
+                <img class="mx-auto h-11  w-auto" src="{{url_for('static',filename='src/logo/logo_name.svg')}}" alt="EyeU">
+            </a>
+            <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 ">Unggah dan Deteksi</h2>
+        </div>
+
+
+        <div class="w-full mx-auto lg:w-5/12 p-4 bg-white border border-gray-200 rounded-2xl sm:p-6 md:p-8">
+            <div class="flex p-4 mb-4 text-sm text-yellow-700 rounded-lg bg-yellow-50 " role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Warning</span>
+                <div>
+                    <span class="font-semibold">Perhatian!</span> Sistem deteksi ini menggunakan teknologi kecerdasan buatan dengan nilai akurasi 90 %, yang artinya hasil yang ditampilkan masih mempunyai kesalahan prediksi. Kami menyarankan Anda untuk
+                    melakukan deteksi 3-5 kali dengan sudut foto yang berbeda.
+                </div>
+            </div>
+            <form class="space-y-6" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Unggah Gambar</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none" aria-describedby="file_input_help" type="file" name="file" accept=".jpg, .jpeg, .png" id="file_input" type="file" required>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Format : PNG, JPG atau JPEG.</p>
+                </div>
+
+
+                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-3 text-center ">Deteksi</button>
+
+            </form>
+            {% if message %} {% if predicted_class == 'Normal' %}
+            <div class="flex mt-5 p-4 text-sm text-green-700 rounded-lg bg-green-50 " role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Success</span>
+                <div>
+                    <span class="font-semibold">Alhamdulillah...</span> Mata Anda normal. Tetap jaga mata Anda normal, jaga kesehatan matamu ya!.
+                </div>
+            </div>
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mt-2" role="alert">
+                <p class="font-bold">{{ message }}</p>
+                <img src="{{ img_str }}" alt="Predicted Image" class="mt-2 rounded-md">
+            </div>
+
+            {% else %}
+            <div class="flex mt-5 p-4 text-sm text-red-700 rounded-lg bg-red-50 " role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <span class="font-semibold">Mata Anda terdeteksi Katarak.</span> Segera konsultasikan ke menu konsultasi di website atau aplikasi kami ya!.
+                </div>
+            </div>
+            <div class="{% if predicted_class == 'Katarak' %} bg-red-100 border border-red-400 text-red-700 {% endif %} px-4 py-3 rounded-lg relative mt-2" role="alert">
+                <p class="font-bold">{{ message }}</p>
+                <img src="{{ img_str }}" alt="Predicted Image" class="mt-2 rounded-md">
+            </div>
+            {% endif %} {% endif %}
+
+
+        </div>
+    </div>
+
+    <!-- Uncomment the following script if you want to include camera access -->
+    <!-- 
+    <section>
+        <h2>Live Camera Feed</h2>
+        <video id="video " autoplay></video>
+    </section>
+    <script>
+        let camera = document.getElementById("video ");
+
+        navigator.mediaDevices.getUserMedia({
+                video: true
+            })
+            .then(stream => {
+                camera.srcObject = stream;
+            })
+            .catch(error => {
+                console.log('Error accessing camera: ${error}')
+            });
+    </script>
+    -->
+
+
+</body>
+
+</html>

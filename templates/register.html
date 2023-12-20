@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{url_for('static',filename='src/logo/logo.svg')}}" type="image/vsvg" sizes="16x16">
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Masuk | Cek Kesehatan Mata dengan lebih cepat & pintar</title>
+</head>
+
+<body>
+    <div class="flex min-h-full flex-col justify-center px-6 py-20 lg:px-8">
+        <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">
+            <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#808dff] to-[#473ebd] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <div class="sm:mx-auto mb-9 sm:w-full sm:max-w-sm">
+            <img class="mx-auto h-11 w-auto" src="{{url_for('static',filename='src/logo/logo_name.svg')}}" alt="EyeU">
+            <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Daftar akun</h2>
+        </div>
+
+
+
+        <div class="w-11/12 mx-auto lg:w-1/3 p-4 bg-white border border-gray-200 rounded-2xl sm:p-6 md:p-8">
+            <form method="POST" class="" action="{{ url_for('register') }}">
+                {% if mesage is defined and mesage %}
+                <div class="alert alert-warning">{{ mesage }}</div>
+                {% endif %}
+                <div>
+                    <label for="name" class="block mb-2 text-base font-semibold text-gray-900 dark:text-white">Nama</label>
+                    <input type="text" id="name" name="name" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" placeholder="nama Anda " , required=True>
+                </div>
+                <div>
+                    <label for="email" class="block mt-4 mb-2 text-base font-semibold text-gray-900 dark:text-white">Email</label>
+                    <input type="email" id="email" name="email" class="  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 " placeholder="contoh@gmail.com " , required=True>
+                </div>
+                <div>
+                    <label for="pwd" class="block mt-4 mb-2 text-base font-semibold text-gray-900 dark:text-white">Password</label>
+                    <input type="password" id="password" name="password" class="  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" placeholder="8+ karakter" , required=True>
+                </div>
+                <button type="submit" value="Login" class="mt-7 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-3 text-center transition-all duration-300">Daftar</button>
+                <div class="mt-4 text-sm text-center font-normal text-gray-500 dark:text-gray-300 ">
+                    Sudah punya akun?
+                    <a href="{{ url_for( 'login') }} " class="text-blue-700 font-semibold hover:text-blue-900 transition-all duration-300">Masuk</a>
+                </div>
+            </form>
+
+            <!-- <form id="contact " class="space-y-6 " action="/register " method="post ">
+                <div>
+                    <label for="name " class="block mb-2 text-md font-semibold text-gray-900 dark:text-white ">Nama</label>
+                    <input type="text " name="name " class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400
+                        dark:text-white " placeholder="yourname "
+                        required>
+                </div>
+                <div>
+                    <label for="username " class="block mb-2 text-md font-semibold text-gray-900 dark:text-white ">Email</label>
+                    <input type="text " name="username " class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400
+                        dark:text-white " placeholder="username "
+                        required>
+                </div>
+                <div>
+                    <label for="password " class="block mb-2 text-md font-semibold text-gray-900 dark:text-white ">Password</label>
+                    <input type="password " name="password " id="password " placeholder="•••••••• " class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-600
+                        dark:border-gray-500 dark:placeholder-gray-400 dark:text-white "
+                        required>
+
+                </div>
+                <button type="submit " value="Register " class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700
+                        dark:focus:ring-blue-800 ">Daftar</button>
+                <div class="text-sm text-center font-medium text-gray-500 dark:text-gray-300 ">
+                    Belum punya akun? <a href="{{ url_for( 'register') }} " class="text-blue-700 font-semibold hover:text-blue-900 dark:text-blue-500 ">Buat akun yuk!</a>
+                </div>
+
+
+            </form> -->
+        </div>
+
+    </div>
+
+</body>
+
+</html>
