@@ -1,5 +1,8 @@
 providers = ["node", "python"]
 
+[phases.setup]
+aptPkgs = ['libmysqlclient-dev'. 'libmysqlclient21']
+
 [phases.build]
 cmds = ["npm run build", "pip install -r requirements.txt"]
 
