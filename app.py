@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from functools import wraps
 import re
-import mysql.connector
+
 
 from keras.models import load_model
 from PIL import Image
@@ -230,6 +230,17 @@ def chat_dr_bima():
     user = cursor.fetchone()
     return render_template('dr.bima.html', user=user, message=message)
 
+
+@app.route("/riwayat-deteksi", methods=['GET', 'POST'])
+@login_required
+def history():
+    id = session.get('id')
+    message = ''
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+    cursor.execute('SELECT * FROM user WHERE id = %s', (id,))
+    user = cursor.fetchone()
+    return render_template('history.html', user=user, message=message)
 
 @app.route('/deteksi', methods=['GET', 'POST'])
 @login_required
