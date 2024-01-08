@@ -1,148 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Input Review</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Ulasan Web</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
-        .container-form {
-            max-width: 600px;
-            margin: auto;
-            margin-top: 20px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
-        }
+    .review-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
 
-        .navbar {
-            background-color: #343a40;
-        }
+    .review-form h2 {
+      text-align: center;
+      color: #333;
+    }
 
-        .navbar-brand, .nav-link {
-            color: #fff;
-        }
+    .review-form label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
 
-        .content-container {
-            display: none;
-        }
+    .review-form textarea,
+    .review-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
 
-        #content-input-review, #content-visualisasi {
-            display: block;
-        }
+    .review-form button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
-        iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
+    .review-form button[type="submit"] {
+      margin-bottom: 8px;
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+    .review-form button[type="button"] {
+      background-color: #2ecc71;
+      margin-bottom: 0;
+    }
 
-        /* Style for the submit button */
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-    </style>
+    /* Style untuk pop-up */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #3498db;
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <form id="reviewForm" method="post">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Review</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="showContent('input-review')">Input Review</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost:8501/" target="_blank">Visualisasi</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    
-        <div class="container container-form content-container" id="content-input-review">
-            <!-- Input Review Form -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Anda" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="tanggal" class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="mb-3">
-                <label for="review" class="form-label">Ulasan</label>
-                <textarea class="form-control" id="review" name="review" rows="3" placeholder="Masukkan Ulasan Anda" required></textarea>
-            </div>
-    
-            <div class="mb-3">
-                <button type="button" class="btn btn-primary" onclick="submitForm()">Kirim</button>
-            </div>
-        </div>
-    
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script>
-            function showContent(contentId) {
-                document.getElementById("content-input-review").style.display = (contentId === 'input-review') ? 'block' : 'none';
-                document.getElementById("content-visualisasi").style.display = (contentId === 'visualisasi') ? 'block' : 'none';
-            }
 
-            function submitForm() {
-                // Get form data
-                var formData = {
-                    'nama': document.getElementById('nama').value,
-                    'tanggal': document.getElementById('tanggal').value,
-                    'review': document.getElementById('review').value
-                };
+  <div class="review-form">
+    <h2>Masukkan Ulasan</h2>
+    <form id="reviewForm" action="#" method="post" onsubmit="return showPopup()">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" required>
 
-                // Send AJAX request to submit form
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/submit', true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        // Form submitted successfully
-                        alert("Form submitted successfully!");
-                    }
-                };
-                xhr.send(JSON.stringify(formData));
-            }
-        </script>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="ulasan">Ulasan:</label>
+      <textarea id="ulasan" name="ulasan" rows="4" required></textarea>
+
+      <button type="submit">Kirim Ulasan</button>
+      <button type="button" onclick="showVisualization()">Visualisasi</button>
     </form>
-    
+  </div>
+
+  <!-- Pop-up berhasil -->
+  <div id="popup" class="popup">
+    <p>Ulasan berhasil dikirim!</p>
+  </div>
+
+  <script>
+    function showPopup() {
+      // Simulasi pengiriman data ulasan
+      // Anda dapat menambahkan logika pengiriman data ke server di sini
+      // Sebagai contoh, saya hanya menampilkan pop-up
+      document.getElementById('popup').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('popup').style.display = 'none';
+      }, 2000); // Sembunyikan pop-up setelah 2 detik
+      return false; // Untuk mencegah pengiriman formulir
+    }
+
+    function showVisualization() {
+      // Tambahkan logika untuk menampilkan visualisasi sentiment analysis di sini
+      alert('Menampilkan visualisasi sentiment analysis!');
+    }
+  </script>
+
 </body>
 </html>

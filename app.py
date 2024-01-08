@@ -6,6 +6,7 @@ import re
 
 
 from keras.models import load_model
+from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
 import numpy as np
 import io
@@ -23,7 +24,7 @@ classes = pickle.load(open('chatbot/classes2.pkl','rb'))
 
 app = Flask(__name__)
 model = load_model('model/model.h5')
-model = load_model('chatbot/chatbot_model2.h5')
+model_chat = load_model('chatbot/chatbot_model2.h5')
 
 app.secret_key = 'xyzsdfg'
 
@@ -200,8 +201,12 @@ def konsultasi():
 def blog():
     return render_template("blog1.html")
 
+@app.route("/chatbotest")
+def chatbotest():
+    return render_template("chatbotest.html")
 
 @app.route("/tester")
+@login_required
 def tester():
     return render_template("tester.html")
 
@@ -293,16 +298,6 @@ def deteksi():
 
     return render_template('deteksi.html')
 
-@app.route("/chatbot")
-def chatbot():
-    return render_template("chatbot.html")
-
-@app.route("/get")
-def get_bot_response():
-    userText = request.args.get('msg')
-    return chatbot_response(userText)
-
-
 def image_to_base64(image):
     # Konversi gambar menjadi format base64 agar bisa ditampilkan di HTML
     img = Image.fromarray(image[0])
@@ -311,6 +306,22 @@ def image_to_base64(image):
     img_str = "data:image/png;base64," + \
         base64.b64encode(buffer.getvalue()).decode()
     return img_str
+
+
+@app.route("/chatbot")
+def chatbot():
+    id = session.get('id')
+    message = ''
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+    cursor.execute('SELECT * FROM user WHERE id = %s', (id,))
+    user = cursor.fetchone()
+    return render_template('chatbot.html', user=user, message=message)
+
+@app.route("/get")
+def get_bot_response():
+    userText = request.args.get('msg')
+    return chatbot_response(userText)
 
 def clean_up_sentence(sentence):
     # tokenize the pattern - split words into array
@@ -335,10 +346,10 @@ def bow(sentence, words, show_details=True):
                     print ("found in bag: %s" % w)
     return(np.array(bag))
 
-def predict_class(sentence, model):
+def predict_class(sentence, model_chat):
     # filter out predictions below a threshold
     p = bow(sentence, words,show_details=False)
-    res = model.predict(np.array([p]))[0]
+    res = model_chat.predict(np.array([p]))[0]
     ERROR_THRESHOLD = 0.25
     results = [[i,r] for i,r in enumerate(res) if r>ERROR_THRESHOLD]
     # sort by strength of probability
@@ -358,14 +369,17 @@ def getResponse(ints, intents_json):
     return result
 
 def chatbot_response(msg):
-    ints = predict_class(msg, model)
+    ints = predict_class(msg, model_chat)
     res = getResponse(ints, intents)
     return res
-
 
 @app.route("/feedback")
 def feedback():
     return render_template("feedback.html")
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
