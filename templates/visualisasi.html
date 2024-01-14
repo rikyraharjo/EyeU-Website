@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Visualisasi</title>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+   <canvas id="visualizationCanvas" width="400" height="200"></canvas>
+   <script>
+       // Fetch data from server
+       fetch('/visualisasi-data')
+           .then(response => response.json())
+           .then(data => {
+               // Create chart
+               var ctx = document.getElementById('visualizationCanvas').getContext('2d');
+               var visualizationChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                      labels: data.labels,
+                      datasets: [{
+                          label: 'Jumlah Review',
+                          data: data.values,
+                          backgroundColor: [
+                              'rgba(75, 192, 192, 0.2)',
+                              'rgba(255, 99, 132, 0.2)',
+                              'rgba(255, 206, 86, 0.2)'
+                          ],
+                          borderColor: [
+                              'rgba(75, 192, 192, 1)',
+                              'rgba(255,99,132,1)',
+                              'rgba(255, 206, 86, 1)'
+                          ],
+                          borderWidth: 1
+                      }]
+                  },
+                  options: {
+                      scales: {
+                          yAxes: [{
+                              ticks: {
+                                 beginAtZero: true
+                              }
+                          }]
+                      }
+                  }
+               });
+           })
+           .catch(error => {
+               console.error('Error fetching visualization data:', error);
+           });
+   </script>
+</body>
+</html>

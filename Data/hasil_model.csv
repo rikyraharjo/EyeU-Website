@@ -1,16 +1,34 @@
 ,id_hasil_model,id_review,nama,tanggal,review,label
-0,37,38,bata,2023-12-27,jelek tidak bisa jalan,0
-1,38,39,angga,2023-12-27,aplikasinya sudah lumayan,-1
-2,47,48,kurut,2023-12-28,"good job untuk aplikasinya, perbaiki terus untuk menjadi lebih baik",-1
-3,49,50,jaga,0000-00-00,layananya ramah dan responsif,1
-4,51,52,riky,0000-00-00,aplikasi ini sangat membantu dan mudah digunakan,1
-5,55,56,jagate,2023-12-28,saya sangat suka dengan fitur-fitur yang disediakan,1
-6,57,58,sucipto,2023-12-28,aplikasinya bagus,-1
-7,58,59,ilham,2023-12-28,aplikasinya ramah dan responsif,1
-8,59,60,ilhamudin,2023-12-28,aplikasinya responsif,-1
-9,60,61,dadang,2023-12-28,aplikasinya ramah dan responsif,1
-10,61,62,riky,2023-12-28,"aplikasinya bagus, sangat membantu",-1
-11,62,63,riky,2023-12-28,mudah digunakan dan efisien,1
-12,66,67,febi,2023-12-28,Navigasi website sangat membingungkan dan lambat,-1
-13,67,68,febi,2023-12-28,Navigasi website sangat membingungkan dan lambat,-1
-14,68,69,aul,2023-12-28,"Banyak bug pada aplikasi, membuat pengalaman buruk.",0
+0,82,83,ibra,2024-01-10 00:00:00,aplikasinya bagus,1
+1,83,84,supri,2024-01-10 00:00:00,sangat membantu dan bagus,1
+2,84,85,zayn,2024-01-09 00:00:00,aplikasinya membantu sekali,1
+3,85,86,xabi,2024-01-10 00:00:00,bagus sekali,1
+4,86,87,kurdi,2024-01-10 00:00:00,aplikasinya bagus,1
+5,87,88,mulus,2024-01-11 00:00:00,bagus aplikasinya saya suka.,1
+6,88,89,suradi,2024-01-11 00:00:00,aplikasi ini sangat membantu dan mudah digunakan,1
+7,89,90,harun,2024-01-11 00:00:00,aplikasinya bagus,-1
+8,90,91,yuli,2024-01-10 00:00:00,luar biasa membantu,-1
+9,91,92,masroni,2024-01-11 00:00:00,jelek,0
+10,92,93,jajang,2024-01-11 00:00:00,"aplikasinya kurang baik, dan jelek",0
+11,93,94,aris,2024-01-11 00:00:00,aplikasinya jelek banget,0
+12,120,121,marina,2024-01-11 00:00:00,aplikasinya berguna buat nenek saya konsultasi masalah mata.,-1
+13,121,122,turinah,2024-01-11 00:00:00,lumayan aplikasinya untuk deteksi dini,-1
+14,122,123,dasniah,2024-01-11 00:00:00,bagus untuk sebuah aplikasi baru,-1
+15,123,124,dasniah,2024-01-11 00:00:00,bagus untuk sebuah aplikasi baru,-1
+16,124,125,gunawan,2024-01-11 00:00:00,jelek,-1
+17,125,126,kurnia,2024-01-11 00:00:00,sangat membantu untuk digunakan ke orang tua,-1
+18,126,146,farhan,2024-01-11 00:00:00,cukup bagus dan responsif,-1
+19,127,147,Bima Arya Fatah,2024-01-10 00:00:00,good,1
+20,128,148,Bimo,2024-01-14 00:00:00,"Keren, membentu sekali",-1
+21,129,149,Bima Arya Fatah,2024-01-14 19:46:27,Mantap deh,-1
+22,130,150,Aji,2024-01-14 20:43:43,Jelek banget ini,-1
+23,131,151,Aji,2024-01-14 21:59:05,"baik
+",-1
+24,133,153,,2024-01-14 22:23:35,,-1
+25,134,154,gatel ,2024-01-14 22:23:48,baik bak baik,-1
+26,135,155,gading,2024-01-14 22:24:39,baik,-1
+27,136,156,gading,2024-01-14 22:26:37,aplikasi buruk sekali ,0
+28,137,157,gading,2024-01-14 22:29:46,jelek sekali,-1
+29,138,158,riki,2024-01-14 22:30:45,jelek sekali ,-1
+30,139,159,Desti,2024-01-14 22:34:28,"Baik oke mantap berfungsi
+",-1

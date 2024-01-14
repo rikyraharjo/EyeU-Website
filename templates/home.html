@@ -52,9 +52,7 @@
                         <li>
                             <a href="#" class="block px-2 py-2  mr-2 ml-2 font-normal rounded-md  hover:bg-gray-100 transition-all duration-300">Riwayat Deteksi</a>
                         </li>
-                        <li>
-                            <a href="#" class="block px-2 py-2  mr-2 ml-2 font-normal rounded-md  hover:bg-gray-100 transition-all duration-300">Pengaturan</a>
-                        </li>
+                        
                     </ul>
                     <div class="py-2 text-sm">
                         <a href="{{ url_for( 'logout') }}" class="block px-2 py-2  mr-2 ml-2  font-normal rounded-md text-red-700  hover:bg-red-100 transition-all duration-300">Keluar</a>
@@ -123,159 +121,44 @@
 
     <section class=" py-12 lg:py-20">
         <div class="gap-8 items-center  px-4 mx-auto max-w-screen-xl xl:gap-0 md:grid md:grid-cols-2  lg:px-8 ">
-
-            <div class="max-w-lg w-full bg-white rounded-lg shadow-lg dark:bg-gray-800 p-4 md:p-6">
-                <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center me-3">
-                            <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 19">
-                        <path d="M14.5 0A3.987 3.987 0 0 0 11 2.1a4.977 4.977 0 0 1 3.9 5.858A3.989 3.989 0 0 0 14.5 0ZM9 13h2a4 4 0 0 1 4 4v2H5v-2a4 4 0 0 1 4-4Z"/>
-                        <path d="M5 19h10v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2ZM5 7a5.008 5.008 0 0 1 4-4.9 3.988 3.988 0 1 0-3.9 5.859A4.974 4.974 0 0 1 5 7Zm5 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5-1h-.424a5.016 5.016 0 0 1-1.942 2.232A6.007 6.007 0 0 1 17 17h2a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5ZM5.424 9H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h2a6.007 6.007 0 0 1 4.366-5.768A5.016 5.016 0 0 1 5.424 9Z"/>
-                      </svg>
-                        </div>
-                        <div>
-                            <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">1.248</h5>
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Jumlah deteksi pengguna</p>
-                        </div>
-                    </div>
+            <div class="max-w-lg w-full bg-white rounded-lg shadow dark:bg-gray-800">
+                <div class="flex justify-between p-4 md:p-6 pb-0 md:pb-0">
                     <div>
-                        <span class="bg-yellow-100 text-yellow-400 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
-                            <svg class="w-2.5 h-2.5 me-1.5 text-yellow-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                              </svg>
-                      88.5%
-                    </span>
+                        <h5 class="tracking-tight text-md font-bold text-gray-900 dark:text-white pb-2">Presentase Penduduk Lanjut Usia di Indonesia</h5>
+                        <p class="tracking-tight text-md font-normal text-gray-500 dark:text-gray-400">(2017-2022)</p>
+                    </div>
+                    <div class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
+                        23%
+                        <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+        </svg>
                     </div>
                 </div>
+                <div id="labels-chart" class="px-2.5"></div>
+                <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-5 p-4 md:p-6 pt-0 md:pt-0">
+                    <div class="flex justify-between items-center pt-5">
+                        <!-- Button -->
 
-                <div class="grid grid-cols-2">
-                    <dl class="flex items-center">
-                        <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal me-1">Deteksi normal:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">75%</dd>
-                    </dl>
-                    <dl class="flex items-center justify-end">
-                        <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal me-1">Deteksi katarak:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">25%</dd>
-                    </dl>
+                        <a class="text-sm font-semibold inline-flex items-center rounded-lg text-blue-700 hover:text-blue-700 dark:hover:text-blue-500  bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                            sumber: Badan Pusat Statistik (BPS)
+          
+                        </a>
+                    </div>
                 </div>
-
-                <div id="column-chart"></div>
-
             </div>
 
             <script>
                 // ApexCharts options and config
                 window.addEventListener("load", function() {
-                    const options = {
-                        colors: ["#1A56DB", "#FDBA8C"],
-                        series: [{
-                            name: "Normal",
-                            color: "#1A56DB",
-                            data: [{
-                                x: "Senin",
-                                y: 31
-                            }, {
-                                x: "Selasa",
-                                y: 57
-                            }, {
-                                x: "Rabu",
-                                y: 88
-                            }, {
-                                x: "Kamis",
-                                y: 136
-                            }, {
-                                x: "Jumat",
-                                y: 183
-                            }, {
-                                x: "Sabtu",
-                                y: 210
-                            }, {
-                                x: "Minggu",
-                                y: 231
-                            }, ],
-                        }, {
-                            name: "Katarak",
-                            color: "#FDBA8C",
-                            data: [{
-                                x: "Senin",
-                                y: 11
-                            }, {
-                                x: "Selasa",
-                                y: 19
-                            }, {
-                                x: "Rabu",
-                                y: 29
-                            }, {
-                                x: "Kamis",
-                                y: 43
-                            }, {
-                                x: "Jumat",
-                                y: 56
-                            }, {
-                                x: "Sabtu",
-                                y: 74
-                            }, {
-                                x: "Minggu",
-                                y: 109
-                            }, ],
-                        }, ],
-                        chart: {
-                            type: "bar",
-                            height: "320px",
-                            fontFamily: "Inter, sans-serif",
-                            toolbar: {
-                                show: false,
-                            },
-                        },
-                        plotOptions: {
-                            bar: {
-                                horizontal: false,
-                                columnWidth: "70%",
-                                borderRadiusApplication: "end",
-                                borderRadius: 8,
-                            },
-                        },
-                        tooltip: {
-                            shared: true,
-                            intersect: false,
-                            style: {
-                                fontFamily: "Inter, sans-serif",
-                            },
-                        },
-                        states: {
-                            hover: {
-                                filter: {
-                                    type: "darken",
-                                    value: 1,
-                                },
-                            },
-                        },
-                        stroke: {
-                            show: true,
-                            width: 0,
-                            colors: ["transparent"],
-                        },
-                        grid: {
-                            show: false,
-                            strokeDashArray: 4,
-                            padding: {
-                                left: 2,
-                                right: 2,
-                                top: -14
-                            },
-                        },
-                        dataLabels: {
-                            enabled: false,
-                        },
-                        legend: {
-                            show: false,
-                        },
+                    let options = {
+                        // set the labels option to true to show the labels on the X and Y axis
                         xaxis: {
-                            floating: false,
+                            show: true,
+                            categories: ['2017', '2018', '2019', '2020', '2021', '2022'],
                             labels: {
                                 show: true,
                                 style: {
-                                    fontFamily: "Inter, sans-serif",
+
                                     cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
                                 }
                             },
@@ -287,61 +170,75 @@
                             },
                         },
                         yaxis: {
-                            show: false,
+                            show: true,
+                            labels: {
+                                show: true,
+                                style: {
+                                    fontFamily: "Inter, sans-serif",
+                                    cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                                },
+
+                            }
+                        },
+                        series: [{
+                            name: "Penduduk Lanjut Usia di Indonesia",
+                            data: [8.97, 9.27, 9.6, 9.92, 10.82, 10.48],
+                            color: "#1A56DB",
+                        }, ],
+                        chart: {
+                            sparkline: {
+                                enabled: false
+                            },
+                            height: "100%",
+                            width: "100%",
+                            type: "area",
+                            fontFamily: "Inter, sans-serif",
+                            dropShadow: {
+                                enabled: false,
+                            },
+                            toolbar: {
+                                show: false,
+                            },
+                        },
+                        tooltip: {
+                            enabled: true,
+                            x: {
+                                show: false,
+                            },
                         },
                         fill: {
-                            opacity: 1,
+                            type: "gradient",
+                            gradient: {
+                                opacityFrom: 0.55,
+                                opacityTo: 0,
+                                shade: "#1C64F2",
+                                gradientToColors: ["#1C64F2"],
+                            },
+                        },
+                        dataLabels: {
+                            enabled: true,
+                        },
+                        stroke: {
+                            width: 6,
+                        },
+                        legend: {
+                            show: false,
+                        },
+                        grid: {
+                            show: false,
                         },
                     }
 
-                    if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
-                        const chart = new ApexCharts(document.getElementById("column-chart"), options);
+                    if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined') {
+                        const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                         chart.render();
                     }
                 });
             </script>
 
-            <!-- <div class="max-w-lg w-full bg-white rounded-lg shadow-lg dark:bg-gray-800 p-4 md:p-6">
-                <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center me-3">
-                            <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 19">
-                        <path d="M14.5 0A3.987 3.987 0 0 0 11 2.1a4.977 4.977 0 0 1 3.9 5.858A3.989 3.989 0 0 0 14.5 0ZM9 13h2a4 4 0 0 1 4 4v2H5v-2a4 4 0 0 1 4-4Z"/>
-                        <path d="M5 19h10v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2ZM5 7a5.008 5.008 0 0 1 4-4.9 3.988 3.988 0 1 0-3.9 5.859A4.974 4.974 0 0 1 5 7Zm5 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5-1h-.424a5.016 5.016 0 0 1-1.942 2.232A6.007 6.007 0 0 1 17 17h2a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5ZM5.424 9H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h2a6.007 6.007 0 0 1 4.366-5.768A5.016 5.016 0 0 1 5.424 9Z"/>
-                      </svg>
-                        </div>
-                        <div>
-                            <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">1.248</h5>
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Jumlah deteksi pengguna</p>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="bg-yellow-100 text-yellow-400 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
-                            <svg class="w-2.5 h-2.5 me-1.5 text-yellow-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                              </svg>
-                      88.5%
-                    </span>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2">
-                    <dl class="flex items-center">
-                        <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal me-1">Deteksi normal:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">75%</dd>
-                    </dl>
-                    <dl class="flex items-center justify-end">
-                        <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal me-1">Deteksi katarak:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">25%</dd>
-                    </dl>
-                </div>
-
-                <div id="column-chart"></div>
-
-            </div> -->
             <div class="mt-4 md:mt-0 ">
-                <h2 class="mb-4 text-2xl md:text-2xl xl:text-4xl tracking-tight font-extrabold text-gray-900 " style="line-height: 1.2;">Statistik Deteksi Kesehatan Mata Pengguna</h2>
-                <p class=" font-light text-gray-500 md:text-lg dark:text-gray-400 ">Di sini, Anda akan menemukan data statistik terkait deteksi kesehatan mata dari pengguna aplikasi kami. Pantau perkembangan, lihat tren, dan analisis hasil deteksi untuk meningkatkan kesadaran akan kesehatan mata Anda.</p>
+                <h2 class="mb-4 text-2xl md:text-2xl xl:text-4xl tracking-tight font-extrabold text-gray-900 " style="line-height: 1.2;">Presentase Penduduk Lanjut Usia di Indonesia</h2>
+                <p class=" font-light text-gray-500 md:text-lg dark:text-gray-400 ">Di sini, Anda akan menemukan data statistik Presentase Penduduk Lanjut Usia di Indonesia.</p>
 
             </div>
         </div>
@@ -595,6 +492,9 @@
             </div>
         </div>
     </footer>
+
+
+    
 
 
 

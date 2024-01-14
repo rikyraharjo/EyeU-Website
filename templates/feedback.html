@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Ulasan Web</title>
   <style>
@@ -89,18 +91,17 @@
 
   <div class="review-form">
     <h2>Masukkan Ulasan</h2>
-    <form id="reviewForm" action="#" method="post" onsubmit="return showPopup()">
+    <form id="reviewForm" method="post" onsubmit="return showPopup()">
       <label for="nama">Nama:</label>
       <input type="text" id="nama" name="nama" required>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
+      <label for="review">Ulasan:</label>
+      <textarea id="review" name="review" rows="4" required></textarea>
 
-      <label for="ulasan">Ulasan:</label>
-      <textarea id="ulasan" name="ulasan" rows="4" required></textarea>
-
-      <button type="submit">Kirim Ulasan</button>
-      <button type="button" onclick="showVisualization()">Visualisasi</button>
+      <button type="button" onclick="submitForm()">Kirim Ulasan</button>
+      <a href="#" onclick="fetchVisualizationData()">Visualisasi</a>
+      
+     
     </form>
   </div>
 
@@ -126,6 +127,81 @@
       alert('Menampilkan visualisasi sentiment analysis!');
     }
   </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+    function showContent(contentId) {
+        document.getElementById("content-input-review").style.display = (contentId === 'input-review') ? 'block' : 'none';
+        document.getElementById("content-visualisasi").style.display = (contentId === 'visualisasi') ? 'block' : 'none';
+    }
+
+    function submitForm() {
+        // Get form data
+        var formData = {
+            'nama': document.getElementById('nama').value,
+
+            'review': document.getElementById('review').value
+        };
+
+        // Send AJAX request to submit form
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/submit', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Form submitted successfully
+                alert("Form submitted successfully!");
+
+                // Reset form fields
+                document.getElementById('nama').value = '';
+
+                document.getElementById('review').value = '';
+            }
+        };
+        xhr.send(JSON.stringify(formData));
+    }
+
+
+    function fetchVisualizationData() {
+        window.location.href = "/visualisasi";
+    }
+
+    function createVisualizationChart(data) {
+        // Tempatkan grafik di elemen canvas di HTML
+        var ctx = document.getElementById('visualizationCanvas').getContext('2d');
+        var visualizationChart = new Chart(ctx, {
+            type: 'bar', // Tipe grafik, bisa 'line', 'bar', dll.
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Jumlah Review',
+                    data: data.values,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+</script>
+
 
 </body>
 </html>
