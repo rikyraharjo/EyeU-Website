@@ -12,6 +12,7 @@ import re
 import streamlit as st
 import pandas as pd 
 import matplotlib.pyplot as plt     
+import mysql.connector
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_mysqldb import MySQL
@@ -140,10 +141,13 @@ def about():
     id = session.get('id')
     message = ''
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    
+    # Mendapatkan jumlah ulasan dari fungsi
+    jumlah_ulasan = hitung_jumlah_ulasan()
 
     cursor.execute('SELECT * FROM user WHERE id = %s', (id,))
     user = cursor.fetchone()
-    return render_template('about.html', user=user, message=message)
+    return render_template('about.html', user=user, message=message, jumlah_ulasan=jumlah_ulasan)
 
 
 
@@ -455,7 +459,7 @@ def visualisasi_data():
    while True:
        # Ambil data dari database atau sumber lain
        data = {
-           'labels': ['positif', 'negatif', 'netral'],
+           'labels': ['Positif', 'Negatif', 'Netral'],
            'values': [jumlah_positif, jumlah_negatif, jumlah_netral]
        }
        # Jika data sudah ada, atau sudah mencapai waktu timeout, kirim data sebagai respon
@@ -691,6 +695,45 @@ data = data[['review', 'label']]
 jumlah_positif = len(data[data['label'] == 1])
 jumlah_negatif = len(data[data['label'] == 0])
 jumlah_netral = len(data[data['label'] == -1])
+
+
+def hitung_jumlah_ulasan(host='localhost', user='root', password='', database='eyeu'):
+    try:
+        # Konfigurasi koneksi ke database MySQL
+        connection = pymysql.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=database
+        )
+   
+        # Membuat kursor
+        cursor = connection.cursor()
+
+        # Query SQL untuk menjumlahkan data ulasan
+        query = f"SELECT COUNT(*) FROM hasil_model"
+
+        # Mengeksekusi query
+        cursor.execute(query)
+
+         # Mendapatkan hasil
+        hasil_jumlah = cursor.fetchone()[0]
+
+        # Menampilkan hasil
+        print(f"Jumlah Ulasan: {hasil_jumlah}")
+
+        return hasil_jumlah  # Return the counted value
+
+    except pymysql.Error as e:
+        print(f"Error: {e}")
+
+    finally:
+        # Menutup kursor dan koneksi
+        cursor.close()
+        connection.close()
+
+# Panggil fungsi untuk menjumlahkan data ulasan
+hitung_jumlah_ulasan()
 
 if __name__ == '__main__':
     app.run(debug=True)

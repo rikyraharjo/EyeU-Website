@@ -20,7 +20,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="z-50 fixed w-full bg-white bg-opacity-90 sm:px-4 py-2.5 rounded" style="backdrop-filter: blur(10px)" ;>
+    <nav class="z-10 fixed w-full bg-white bg-opacity-90 sm:px-4 py-2.5 rounded" style="backdrop-filter: blur(10px)" ;>
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 lg:px-8 p-4">
             <a href="{{ url_for( 'home') }} " class="flex items-center ">
                 <img src="{{url_for( 'static',filename='src/logo/logo.svg' )}} " class="mr-3 h-6 sm:h-9 " alt="Flowbite Logo ">
@@ -243,9 +243,6 @@
             </div>
         </div>
     </section>
-
-
-
 
     <section class=" py-12 lg:py-20 ">
         <div class=" px-4 mx-auto max-w-screen-xl  lg:px-8 ">
@@ -494,151 +491,133 @@
     </footer>
 
 
+
+    <!-- Modal toggle -->
+    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="z-10 fixed bottom-6 start-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all duration-300" type="button">
+        Beri kami ulasan
+    </button>
+
+    
+    
+
+   
+    
+    <!-- Main modal -->
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <!-- Modal header -->
+              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-lg dark:border-gray-600">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                      Ulasan
+                  </h3>
+                  <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                      </svg>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+              </div>
+              <!-- Modal body -->
+              <div class="p-4 md:p-5">
+                <p class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400">Ulasan Anda sangat berharga bagi kami untuk meningkatkan sistem kami🥳.</p>
+                  <form class="space-y-4" method="post">
+                      <div>
+                          <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                          <input type="text" id="nama" name="nama"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="nama Anda" required>
+                      </div>
+                      <div>
+                          <label for="review" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ulasan</label>
+                          <textarea id="review" name="review" rows="4" placeholder="Ketik ulasan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
+                      </div>
+                      
+                      <button type="submit" onclick="submitForm()" class="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-base px-5 py-3 text-center transition-all duration-300 ">Kirim</button>
+                      
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div> 
+  
     
 
 
 
     <script src="https://unpkg.com/flowbite@2.1.1/dist/flowbite.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts "></script>
-
-    <!-- <script>
-        // ApexCharts options and config
-        window.addEventListener("load ", function() {
-            const options = {
-                colors: ["#1A56DB ", "#FDBA8C "],
-                series: [{
-                    name: "Normal ",
-                    color: "#1A56DB ",
-                    data: [{
-                        x: "Senin ",
-                        y: 31
-                    }, {
-                        x: "Selasa ",
-                        y: 57
-                    }, {
-                        x: "Rabu ",
-                        y: 88
-                    }, {
-                        x: "Kamis ",
-                        y: 136
-                    }, {
-                        x: "Jumat ",
-                        y: 183
-                    }, {
-                        x: "Sabtu ",
-                        y: 210
-                    }, {
-                        x: "Minggu ",
-                        y: 231
-                    }, ],
-                }, {
-                    name: "Katarak ",
-                    color: "#FDBA8C ",
-                    data: [{
-                        x: "Senin ",
-                        y: 11
-                    }, {
-                        x: "Selasa ",
-                        y: 19
-                    }, {
-                        x: "Rabu ",
-                        y: 29
-                    }, {
-                        x: "Kamis ",
-                        y: 43
-                    }, {
-                        x: "Jumat ",
-                        y: 56
-                    }, {
-                        x: "Sabtu ",
-                        y: 74
-                    }, {
-                        x: "Minggu ",
-                        y: 109
-                    }, ],
-                }, ],
-                chart: {
-                    type: "bar ",
-                    height: "320px ",
-                    fontFamily: "Inter, sans-serif ",
-                    toolbar: {
-                        show: false,
-                    },
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts "></script>      
+    <script>
+        function showContent(contentId) {
+            document.getElementById("content-input-review").style.display = (contentId === 'input-review') ? 'block' : 'none';
+            document.getElementById("content-visualisasi").style.display = (contentId === 'visualisasi') ? 'block' : 'none';
+        }
+    
+        function submitForm() {
+            // Get form data
+            var formData = {
+                'nama': document.getElementById('nama').value,
+                'review': document.getElementById('review').value
+            };
+    
+            // Send AJAX request to submit form
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/submit', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Form submitted successfully
+                    alert("Form submitted successfully!");
+    
+                    // Reset form fields
+                    document.getElementById('nama').value = '';
+                    document.getElementById('review').value = '';
+                }
+            };
+            xhr.send(JSON.stringify(formData));
+        }
+    
+    
+        function fetchVisualizationData() {
+            window.location.href = "/visualisasi";
+        }
+    
+        function createVisualizationChart(data) {
+            // Tempatkan grafik di elemen canvas di HTML
+            var ctx = document.getElementById('visualizationCanvas').getContext('2d');
+            var visualizationChart = new Chart(ctx, {
+                type: 'bar', // Tipe grafik, bisa 'line', 'bar', dll.
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Jumlah Review',
+                        data: data.values,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255,99,132,1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
                 },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: "70% ",
-                        borderRadiusApplication: "end ",
-                        borderRadius: 8,
-                    },
-                },
-                tooltip: {
-                    shared: true,
-                    intersect: false,
-                    style: {
-                        fontFamily: "Inter, sans-serif ",
-                    },
-                },
-                states: {
-                    hover: {
-                        filter: {
-                            type: "darken ",
-                            value: 1,
-                        },
-                    },
-                },
-                stroke: {
-                    show: true,
-                    width: 0,
-                    colors: ["transparent "],
-                },
-                grid: {
-                    show: false,
-                    strokeDashArray: 4,
-                    padding: {
-                        left: 2,
-                        right: 2,
-                        top: -14
-                    },
-                },
-                dataLabels: {
-                    enabled: false,
-                },
-                legend: {
-                    show: false,
-                },
-                xaxis: {
-                    floating: false,
-                    labels: {
-                        show: true,
-                        style: {
-                            fontFamily: "Inter, sans-serif ",
-                            cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
-                        }
-                    },
-                    axisBorder: {
-                        show: false,
-                    },
-                    axisTicks: {
-                        show: false,
-                    },
-                },
-                yaxis: {
-                    show: false,
-                },
-                fill: {
-                    opacity: 1,
-                },
-            }
-
-            if (document.getElementById("column-chart ") && typeof ApexCharts !== 'undefined') {
-                const chart = new ApexCharts(document.getElementById("column-chart "), options);
-                chart.render();
-            }
-        });
-    </script> -->
-
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
+    
+      
 </body>
 
 </html>
