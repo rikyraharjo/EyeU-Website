@@ -1,3 +1,4 @@
+# import library
 import pickle
 import base64
 import json
@@ -26,6 +27,7 @@ from functools import wraps
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
 
+# import model
 intents = json.loads(open('chatbot/intents.json').read())
 words = pickle.load(open('chatbot/words2.pkl','rb'))
 classes = pickle.load(open('chatbot/classes2.pkl','rb'))
@@ -44,16 +46,12 @@ app.config['MYSQL_DB'] = 'eyeu'
 mysql = MySQL(app)
 
 # Fungsi untuk memeriksa apakah pengguna sudah login
-
-
 def check_logged_in():
     if 'loggedin' not in session:
         return False
     return True
 
 # Dekorator untuk memeriksa login sebelum akses ke halaman
-
-
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -62,7 +60,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-
+# routing web
 @app.route("/", methods=['GET', 'POST'])
 @login_required
 def home():
@@ -95,7 +93,7 @@ def login():
             session['password'] = user['password']
             return redirect(url_for('home'))
         else:
-            mesage = 'Please enter correct email / password !'
+            mesage = 'Mohon periksa E-mail atau password Anda!'
 
     return render_template('login.html', mesage=mesage)
 
@@ -120,11 +118,11 @@ def register():
         cursor.execute('SELECT * FROM user WHERE email = % s', (email, ))
         account = cursor.fetchone()
         if account:
-            mesage = 'Account already exists !'
+            mesage = 'Akun sudah tersedia!'
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            mesage = 'Invalid email address !'
+            mesage = 'Alamat E-mail tidak diketahui!'
         elif not name or not password or not email:
-            mesage = 'Please fill out the form !'
+            mesage = 'Mohon Isi form terlebih dahulu !'
         else:
             cursor.execute(
                 'INSERT INTO user VALUES (NULL, % s, % s, % s)', (name, email, password, ))
@@ -269,6 +267,7 @@ def history():
     user = cursor.fetchone()
     return render_template('history.html', user=user, message=message)
 
+# route fitur DETEKSI kesehatan mata
 @app.route('/deteksi', methods=['GET', 'POST'])
 @login_required
 def deteksi():
@@ -319,6 +318,7 @@ def image_to_base64(image):
     return img_str
 
 
+# route fitur cHATBOT
 @app.route("/chatbot")
 def chatbot():
     id = session.get('id')
@@ -384,6 +384,7 @@ def chatbot_response(msg):
     res = getResponse(ints, intents)
     return res
 
+# ===========================================
 @app.route("/feedback")
 def feedback():
     return render_template("feedback.html")
@@ -547,7 +548,6 @@ if not is_table_empty(table_name):
     data_casefolding.head()
 
     #filtering
-
     #url
     filtering_url = [re.sub(r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))''', " ", str(tweet)) for tweet in data_casefolding]
     #cont
@@ -696,7 +696,7 @@ jumlah_positif = len(data[data['label'] == 1])
 jumlah_negatif = len(data[data['label'] == 0])
 jumlah_netral = len(data[data['label'] == -1])
 
-
+#Menghitung jumlah ulasan pada tentang kami 
 def hitung_jumlah_ulasan(host='localhost', user='root', password='', database='eyeu'):
     try:
         # Konfigurasi koneksi ke database MySQL
